@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Exercise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title>Exericse - 1</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Exercise - 1</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+
+                <form class="ui form" name="form">
+
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input class="form-control" id="txtFullName" type="text" name="txtFullName" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input class="form-control" id="txtAddress" type="text" name="txtAddress" placeholder="Address">
+                    </div>
+                    <label>NIC</label>
+                    <div class="input-group">
+
+                        <input aria-describedby="basic-addon2" class="form-control" id="txtNIC" type="text" name="txtNIC"
+                            placeholder="NIC">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">V</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button id="btnAdd" type="button" class="btn btn-primary">
+                            Add to Table
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-12 col-md-6">
+
+                <span>List of Students</span>
+
+                <table id="tblStudents" class="table table-bordered table-hover">
+
+                    <thead>
+                        <tr>
+                            <th class="center">No</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th class="center">NIC</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="center">There are no records right now !</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/home-controller.js"></script>
+    <script>
+        var count = 0;
+        $("#txtFullName").focus();
+        $("#btnAdd").click(function () {
+            var fullName = $("#txtFullName").val();
+            var address = $("#txtAddress").val();
+            var nic = $("#txtNIC").val();
+
+            var RegNIC = /^([0-9]{9})$/;
+
+            var ResultReg = RegNIC.test(nic);
+
+            if (!ResultReg) {
+                alert("Invalid NIC");
+            }
+            else if (!$.trim(fullName).length) {
+                alert("FullName is empty!");
+                $("#txtFullName").css("border", "1px red solid");
+                $("#txtAddress").focus();
+            }
+            else if (!$.trim(address).length) {
+                alert("Address is empty!");
+                $("#txtAddress").css("border", "1px red solid");
+            }
+            else if (!$.trim(nic).length) {
+                alert("NIC is empty!");
+                $("#txtNIC").css("border", "1px red solid");
+            }
+            else {
+                $("img").on({
+                    "mouseover": function () {
+                        $(this).attr('src', 'images/recyclebin-hover.png');
+                    },
+                    "mouseout": function () {
+                        $(this).attr('src', 'images/recyclebin.png');
+                    }
+                });
+                var markup = $("table tbody").append("<tr><td>" + (++count) + "</td><td>" + fullName + "</td><td>" + address + "</td><td>" + nic + "V" + "</td><td>" + "<img src=images/recyclebin.png>" + "</td></tr>");
+                $("tfoot tr").remove();
+                $("#txtFullName").val("");
+                $("#txtAddress").val("");
+                $("#txtNIC").val("");
+
+
+                $("img").click(function () {
+                    $(this).parent().parent().fadeOut();
+                    
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>

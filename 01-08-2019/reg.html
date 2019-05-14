@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+        background-color: aliceblue;
+        margin: 1px solid black;
+        text-align: center;
+        width: 50%;
+        }
+
+        
+    
+    </style>
+</head>
+
+<body>
+    <div>
+        <form action="reg.html">
+            Telephone Number : </br></br>
+            <input type="text" id="txtTele"> </br></br>
+            <button type="button" id="btnTele">Validate</button>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $("#btnTele").click(function () {
+            var tele = $("#txtTele").val();
+            var RegTele = /^\d{3}-\d{7}$/;
+            var Result = RegTele.test(tele);
+            if (Result) {
+                alert("True");
+            } else {
+                alert("false");
+            }
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!--2nd program-->
+    <div>
+        </br>
+        <input type="text" id="txtTele"> </br></br>
+
+
+        <button type="button" id="btnText">Validate</button></br>
+        <p id="ptag">fully designed for undergraduate students who are studying in government and private universities
+            to
+            enchance the knowledge</p>
+    </div>
+
+    <script>
+        $("#btnText").click(function () {
+            var para = $("#ptag").text();
+            var inputValue = $("#txtTele").val();
+            var regEx = new RegExp(inputValue, "gm");
+
+            var newText = $("#ptag").text().replace(regEx, "<span style='color:red'>" + inputValue + "</span>");
+            $("#ptag").html(newText);
+        })
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</body>
+
+</html>

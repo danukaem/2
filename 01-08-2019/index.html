@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        #div1 {
+        background-color: brown;
+        width: 250px;
+        height: 250px;
+    }
+
+    #txtSomethingg {
+        border: 1px solid black;
+        padding: 10px
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Hello JQuery</h1>
+    <ul id="ul1">
+        <li>BMW <span>520d</span></li>
+        <li>AUDI
+            <ul>
+                <li id="li1">A6</li>
+                <li>A4 <span>2019</span></li>
+            </ul>
+        </li>
+        <li>Benz</li>
+    </ul>
+
+    <img src="" alt="cars" width="250px" height="250px">
+    <form action="index.html" method="GET" enctype="" id="txtSomethingg">
+        Enter some text :<input type="text" id="txtSomething" name="txtSomething">
+        <button type="button">Send My Data</button>
+    </form></br>
+    <button type="button" id="btn01">Hind</button>
+
+    <div id="div1"></div></br>
+
+    <input type="text" id="txtRandom">
+    <div id="div2">
+
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+    <script>
+        $("h1").css("color", 'red');
+        $("img").attr("src", "img/img01.jpg");
+        $("#ul1").find("#li1").parent().find("span").css("color", 'red');
+        $("#li1").parents("#ul1").children().last("li").text("Hello JQuery");
+        $("#li1").parents("#ul1").children().first().find("span").remove();
+        var cloned = $("#li1").parents("li").clone();
+        $("#li1").parents("#ul1").append(cloned);
+
+        $("#btn01").on('click', function () {
+            var valueBtn = $("#btn01").text();
+
+            if (valueBtn == "Hide") {
+                $("#btn01").text("Show");
+                $("#div2").hide();
+            }
+            else {
+                $("#btn01").text("Hide");
+                $("#div2").show();
+            }
+        }
+        );
+
+        $("#txtSomething").val("IJSE");
+
+        $("#txtSomethingg").children("button").click(
+            function () {
+                $("#txtSomethingg").submit();
+            }
+        );
+
+        $("#txtRandom").keyup(function () {
+            var text = $("#txtRandom").val();
+            $("#div2").text(text);
+        })
+
+
+
+
+    </script>
+
+</body>
+
+</html>
